@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../AuthProvider/AuthProvider";
@@ -8,8 +8,11 @@ import Swal from "sweetalert2";
 
 const Register = () => {
     const [axiosSecure] = useAxiosSecure()
-    const {createUser, updateUserProfile } = useContext(AuthContext)
+    const {createUser, updateUserProfile, googleSignIn } = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -47,6 +50,24 @@ const Register = () => {
     })
 
   };
+
+
+  const handleGoogleSignIn = () =>{
+    googleSignIn()
+    .then(result =>{
+        const loggedUser = result.user
+        const savedUser = {name : loggedUser.displayName, email : loggedUser.email}
+        axiosSecure.post('/users', savedUser)
+        .then(data =>{
+            console.log(data)
+            navigate(from, { replace: true });
+        })
+    })
+  }
+
+
+
+
   return (
     <div className="hero min-h-screen bg-base-200 p-5">
       <div className="card flex-shrink-0  w-full max-w-sm shadow-2xl bg-base-100">
@@ -155,7 +176,7 @@ const Register = () => {
           </form>
         </div>
         <div className="divider mb-10">
-          <button className="border px-4 py-2 btn-primary rounded-full flex items-center gap-2">
+          <button onClick={handleGoogleSignIn} className="border px-4 py-2 btn-primary rounded-full flex items-center gap-2">
             {" "}
             <FaGoogle></FaGoogle> Google
           </button>

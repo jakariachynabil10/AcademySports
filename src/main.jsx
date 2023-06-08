@@ -18,6 +18,8 @@ import AllInstructor from "./AllInstructor/AllInstructor.jsx";
 import Login from "./Login/Login.jsx";
 import Register from "./Register/Register.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
+import Dashboard from "./Dashboard/Dashboard.jsx";
+import AllUsers from "./AllUsers/AllUsers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,16 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

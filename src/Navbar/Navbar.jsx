@@ -39,7 +39,7 @@ const Navbar = () => {
                 : "px-8 py-3  bg-[#1f7a98] text-white rounded-md"
             }
           >
-            Login Out
+            Log Out
           </button>
         </>
       ) : (

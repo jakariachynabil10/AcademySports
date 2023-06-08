@@ -20,7 +20,7 @@ const ClassesCard = ({ classItem }) => {
           <p>{description}</p>
           <p>Student Enrolled : {studentsEnrolled}</p>
           <div className="card-actions justify-end">
-         <Link to='/classes'>
+         <Link to='/allClasses'>
          <button className="px-8 py-3  bg-[#0c0769] text-white rounded-md">
          See All Classes
         </button>

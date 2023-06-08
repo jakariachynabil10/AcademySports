@@ -28,7 +28,7 @@ const SingleCls = ({ singleCls }) => {
         <p>Available Seats : {availableSeats}</p>
         <div className="card-actions justify-end">
         <button className="px-8 py-3  bg-[#0c0769] text-white rounded-md">
-         Add to Cart
+         Add to Class Cart
         </button>
         </div>
       </div>

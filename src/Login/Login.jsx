@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn } = useContext(AuthContext);
+  const { signIn , googleSignIn } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure()
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,6 +34,19 @@ const Login = () => {
         navigate(from, { replace: true });
     })
   };
+
+  const handleGoogleSignIn = () =>{
+    googleSignIn()
+    .then(result =>{
+        const loggedUser = result.user
+        const savedUser = {name : loggedUser.displayName, email : loggedUser.email}
+        axiosSecure.post('/users', savedUser)
+        .then(data =>{
+            console.log(data)
+            navigate(from, { replace: true });
+        })
+    })
+  }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -106,7 +121,7 @@ const Login = () => {
               </form>
             </div>
             <div className="divider mb-10">
-              <button className="border px-4 py-2 btn-primary rounded-full flex items-center gap-2">
+              <button onClick={handleGoogleSignIn} className="border px-4 py-2 btn-primary rounded-full flex items-center gap-2">
                 {" "}
                 <FaGoogle></FaGoogle> Google
               </button>
