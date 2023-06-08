@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../Footer/Footer";
 
 const Main = () => {
+    const location = useLocation()
   return (
     <div>
-      <div className="bg-[#000000bb] lg:px-10">
+      <div className={location.pathname === '/' ? "bg-[#000000bb] lg:px-10" : "lg:px-10 "}>
         <Navbar></Navbar>
       </div>
       <Outlet></Outlet>

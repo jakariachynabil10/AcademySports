@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../public/Image/ASO-f5325d90.png";
 
 const Navbar = () => {
+    const location = useLocation()
   const items = (
     <>
       <li>
@@ -12,7 +13,7 @@ const Navbar = () => {
         <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <Link to="/allClasses">Classes</Link>
       </li>
       <li>
         <Link to="/dashboard">Dashboard</Link>
@@ -22,7 +23,7 @@ const Navbar = () => {
       </li>
      <li>
      <Link to="/login">
-        <button className="px-8 py-3  bg-[#9195ba] text-white rounded-md">
+        <button className={location.pathname === '/' ? "px-8 py-3  bg-[#9195ba] text-white rounded-md" : "px-8 py-3  bg-[#1f7a98] text-white rounded-md"}>
           Login
         </button>
       </Link>
@@ -31,7 +32,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar lg:flex justify-between items-center text-white">
+      <div className={location.pathname === '/' ? "navbar lg:flex justify-between items-center text-white" : "navbar lg:flex justify-between items-center text-black"}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

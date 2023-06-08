@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const InstructorCard = ({instructor}) => {
     const {instructorImg, instructorName, information, email, studentsEnrolled} = instructor
     return (
-        <div className="card mt-10 bg-base-100 shadow-xl">
+        <div className="card mt-10 bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300">
         <figure>
           <img
             src={instructorImg}
@@ -17,10 +17,11 @@ const InstructorCard = ({instructor}) => {
             {instructorName}
           </h2>
           <p>{information}</p>
+          <p>Email: {email}</p>
           <p>Student Joined : {studentsEnrolled}</p>
           <div className="card-actions justify-end">
          <Link to='/instructors'>
-         <button className="btn btn-primary">See All Instructor</button>
+         <button className="px-8 py-3  bg-[#0c0769] text-white rounded-md">See All Instructor</button>
          </Link>
           </div>
         </div>

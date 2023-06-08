@@ -5,7 +5,7 @@ const ClassesCard = ({ classItem }) => {
     const {classImg, className, description, studentsEnrolled} = classItem
   return (
     <>
-      <div className="card mt-10 bg-base-100 shadow-xl">
+      <div className="card mt-10 bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300">
         <figure>
           <img
             src={classImg}
@@ -21,7 +21,9 @@ const ClassesCard = ({ classItem }) => {
           <p>Student Enrolled : {studentsEnrolled}</p>
           <div className="card-actions justify-end">
          <Link to='/classes'>
-         <button className="btn btn-primary">See All Classes</button>
+         <button className="px-8 py-3  bg-[#0c0769] text-white rounded-md">
+         See All Classes
+        </button>
          </Link>
           </div>
         </div>
