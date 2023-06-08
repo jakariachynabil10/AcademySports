@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    FaAddressBook,
+  FaAddressBook,
   FaBook,
   FaCalendarAlt,
   FaHome,
@@ -10,9 +10,11 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin);
   const isInstructor = false;
   const isUser = false;
   return (
@@ -31,7 +33,7 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 h-full bg-base-200 text-black">
             {/* Sidebar content here */}
             {isAdmin ? (
               <>
@@ -52,7 +54,35 @@ const Dashboard = () => {
                 </li>
               </>
             ) : (
-              <></>
+              <>
+                <li>
+                  <NavLink to="/dashboard/home">
+                    <FaHome></FaHome> User Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/payment">
+                    <FaCalendarAlt></FaCalendarAlt> Payment
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/history">
+                    <FaWallet></FaWallet> Payment History
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/myClassCart">
+                    <FaShoppingCart></FaShoppingCart> My Class Cart
+                    <span className="badge inl badge-secondary">+</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/myEnrolledClass">
+                    <FaShoppingCart></FaShoppingCart> My Enrolled Class
+                    <span className="badge inl badge-secondary">+</span>
+                  </NavLink>
+                </li>
+              </>
             )}
 
             {/* {isInstructor === "instructors" ? (
