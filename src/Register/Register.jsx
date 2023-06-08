@@ -1,17 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Register = () => {
+    const [axiosSecure] = useAxiosSecure()
+    const {createUser, updateUserProfile } = useContext(AuthContext)
+    const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    reset,
+   formState : {errors},
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+
+    createUser(data.email, data.ConfirmPassword)
+    .then(result =>{
+        const loggedUser = result.user
+        console.log(loggedUser)
+        updateUserProfile(data.name, data.photoUrl)
+        .then(()=>{
+            const savedUser = {name : data.name , email : data.email}
+            axiosSecure.post('/users', savedUser)
+            .then(data => {
+                console.log(data)
+                if(data.data.insertedId){
+                    reset()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'User created successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/')
+                }
+            })
+        })
+
+    })
+
   };
   return (
     <div className="hero min-h-screen bg-base-200 p-5">
@@ -32,7 +66,7 @@ const Register = () => {
                 className="input input-bordered"
               />
               {errors.name && (
-                <span className="text-red-500">{errors.name.message}</span>
+                <span className="text-red-500">{errors.name}</span>
               )}
             </div>
             <div className="form-control">
