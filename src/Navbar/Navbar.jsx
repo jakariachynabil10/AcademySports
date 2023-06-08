@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../public/Image/ASO-f5325d90.png";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-    const location = useLocation()
+  const location = useLocation();
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut();
+  };
   const items = (
     <>
       <li>
@@ -21,18 +26,50 @@ const Navbar = () => {
       <li>
         <Link to="/aboutUs">About US</Link>
       </li>
-     <li>
-     <Link to="/login">
-        <button className={location.pathname === '/' ? "px-8 py-3  bg-[#9195ba] text-white rounded-md" : "px-8 py-3  bg-[#1f7a98] text-white rounded-md"}>
-          Login
-        </button>
-      </Link>
-     </li>
+      {user ? (
+        <>
+          <div>
+            <img src={user.photoURL} className="w-10 rounded-full mr-4" />
+          </div>
+          <button
+            onClick={handleLogOut}
+            className={
+              location.pathname === "/"
+                ? "px-8 py-3  bg-[#9195ba] text-white rounded-md"
+                : "px-8 py-3  bg-[#1f7a98] text-white rounded-md"
+            }
+          >
+            Login Out
+          </button>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">
+              <button
+                className={
+                  location.pathname === "/"
+                    ? "px-8 py-3  bg-[#9195ba] text-white rounded-md"
+                    : "px-8 py-3  bg-[#1f7a98] text-white rounded-md"
+                }
+              >
+                Login
+              </button>
+            </Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
     <>
-      <div className={location.pathname === '/' ? "navbar lg:flex justify-between items-center text-white" : "navbar lg:flex justify-between items-center text-black"}>
+      <div
+        className={
+          location.pathname === "/"
+            ? "navbar lg:flex justify-between items-center text-white"
+            : "navbar lg:flex justify-between items-center text-black"
+        }
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -60,14 +97,25 @@ const Navbar = () => {
           </div>
           <div className="flex items-center">
             <img src={logo} className="w-[70px] h-[70px]" alt="" />
-            <Link to="/" className="btn btn-ghost normal-case text-xl">
+            <Link to="/" className="btn btn-ghost normal-case text-lg lg:text-xl">
               Academy Sports
             </Link>
           </div>
         </div>
 
         <div className=" navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal font-semibold items-center  px-1">{items}</ul>
+          <ul className="menu menu-horizontal font-semibold items-center  px-1">
+            {items}
+          </ul>
+        </div>
+        <div className="navbar-end lg:hidden">
+          {user && (
+            <>
+           
+                <img src={user.photoURL} className="w-10 rounded-full" />
+              
+            </>
+          )}
         </div>
       </div>
     </>

@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
 
   const onSubmit = (data) => {
     console.log(data);
+    signIn(data.email, data.password)
+    .then(result => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+            title: 'User Login Successful.',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        });
+        navigate(from, { replace: true });
+    })
   };
 
   const togglePasswordVisibility = () => {
@@ -32,7 +55,7 @@ const Login = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                    {...register("mail", {
+                    {...register("email", {
                       required: "Email Address is required",
                     })}
                     type="email"
@@ -45,31 +68,33 @@ const Login = () => {
                     <span className="label-text">Password</span>
                   </label>
 
-               
-                 <input
+                  <input
                     {...register("password", { required: true })}
                     type={showPassword ? "text" : "password"}
                     placeholder="password"
                     className="input input-bordered relative"
-                   
                   />
-                  <div  onClick={togglePasswordVisibility} className="absolute pb-5 top-1/2  right-14 transform -translate-y-1/2">
-                  {showPassword ? (
-                    <>
-                      <FaEyeSlash></FaEyeSlash>
-                    </>
-                  ) : (
-                    <>
-                      <FaEye></FaEye>
-                    </>
-                  )}
+                  <div
+                    onClick={togglePasswordVisibility}
+                    className="absolute pb-5 top-1/2  right-14 transform -translate-y-1/2"
+                  >
+                    {showPassword ? (
+                      <>
+                        <FaEyeSlash></FaEyeSlash>
+                      </>
+                    ) : (
+                      <>
+                        <FaEye></FaEye>
+                      </>
+                    )}
                   </div>
-                 
-       
 
                   <label className="label">
-                    <Link to='/register' className="label-text-alt link link-hover">
-                     Create a Account
+                    <Link
+                      to="/register"
+                      className="label-text-alt link link-hover"
+                    >
+                      Create a Account
                     </Link>
                   </label>
                 </div>
