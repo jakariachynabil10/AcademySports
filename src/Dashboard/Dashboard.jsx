@@ -11,12 +11,13 @@ import {
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useinstructor";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
-  console.log(isAdmin);
-  const isInstructor = false;
-  const isUser = false;
+  const [isInstructor] = useInstructor();
+  console.log(isAdmin, isInstructor);
+
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -55,7 +56,7 @@ const Dashboard = () => {
               </>
             ) : (
               <>
-                <li>
+                {/* <li>
                   <NavLink to="/dashboard/home">
                     <FaHome></FaHome> User Home
                   </NavLink>
@@ -81,11 +82,11 @@ const Dashboard = () => {
                     <FaShoppingCart></FaShoppingCart> My Enrolled Class
                     <span className="badge inl badge-secondary">+</span>
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
 
-            {/* {isInstructor === "instructors" ? (
+            {isInstructor ? (
               <>
                 <li>
                   <NavLink to="/dashboard/home">
@@ -106,7 +107,7 @@ const Dashboard = () => {
               </>
             ) : (
               <>
-                <li>
+                {/* <li>
                   <NavLink to="/dashboard/home">
                     <FaHome></FaHome> User Home
                   </NavLink>
@@ -136,9 +137,9 @@ const Dashboard = () => {
                       +
                     </span>
                   </NavLink>
-                </li>
+                </li> */}
               </>
-            )} */}
+            )}
 
             <div className="divider"></div>
             <li>
