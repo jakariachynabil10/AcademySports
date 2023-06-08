@@ -12,11 +12,13 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useinstructor";
+import useStudents from "../Hooks/useStudents";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
-  console.log(isAdmin, isInstructor);
+  const [isStudents] = useStudents();
+  console.log(isAdmin, isInstructor, isStudents);
 
   return (
     <>
@@ -55,35 +57,7 @@ const Dashboard = () => {
                 </li>
               </>
             ) : (
-              <>
-                {/* <li>
-                  <NavLink to="/dashboard/home">
-                    <FaHome></FaHome> User Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/payment">
-                    <FaCalendarAlt></FaCalendarAlt> Payment
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/history">
-                    <FaWallet></FaWallet> Payment History
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/myClassCart">
-                    <FaShoppingCart></FaShoppingCart> My Class Cart
-                    <span className="badge inl badge-secondary">+</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/myEnrolledClass">
-                    <FaShoppingCart></FaShoppingCart> My Enrolled Class
-                    <span className="badge inl badge-secondary">+</span>
-                  </NavLink>
-                </li> */}
-              </>
+              <></>
             )}
 
             {isInstructor ? (
@@ -106,8 +80,11 @@ const Dashboard = () => {
                 </li>
               </>
             ) : (
+              <></>
+            )}
+            {isStudents ? (
               <>
-                {/* <li>
+                <li>
                   <NavLink to="/dashboard/home">
                     <FaHome></FaHome> User Home
                   </NavLink>
@@ -125,20 +102,18 @@ const Dashboard = () => {
                 <li>
                   <NavLink to="/dashboard/myClassCart">
                     <FaShoppingCart></FaShoppingCart> My Class Cart
-                    <span className="badge inl badge-secondary">
-                      +
-                    </span>
+                    <span className="badge inl badge-secondary">+</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/myEnrolledClass">
                     <FaShoppingCart></FaShoppingCart> My Enrolled Class
-                    <span className="badge inl badge-secondary">
-                      +
-                    </span>
+                    <span className="badge inl badge-secondary">+</span>
                   </NavLink>
-                </li> */}
+                </li>
               </>
+            ) : (
+              <></>
             )}
 
             <div className="divider"></div>
