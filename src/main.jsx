@@ -17,6 +17,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import AllClasses from './AllClasses/AllClasses.jsx';
+import AllInstructor from './AllInstructor/AllInstructor.jsx';
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path : '/allClasses',
         element : <AllClasses></AllClasses>
+      },
+      {
+        path : '/allInstructors',
+        element : <AllInstructor></AllInstructor>
       }
     ]
   },
