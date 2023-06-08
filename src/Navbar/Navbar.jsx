@@ -1,31 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../public/Image/ASO-f5325d90.png';
-
+import logo from "../../public/Image/ASO-f5325d90.png";
 
 const Navbar = () => {
   const items = (
     <>
       <li>
-       <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-       <Link to='/instructors'>Instructors</Link>
+        <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-       <Link to='/classes'>Classes</Link>
+        <Link to="/classes">Classes</Link>
       </li>
       <li>
-       <Link to='/dashboard'>Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
       <li>
-       <Link to='/aboutUs'>About US</Link>
+        <Link to="/aboutUs">About US</Link>
       </li>
+     <li>
+     <Link to="/login">
+        <button className="px-8 py-3  bg-[#9195ba] text-white rounded-md">
+          Login
+        </button>
+      </Link>
+     </li>
     </>
   );
   return (
     <>
-      <div className="navbar lg:flex justify-between items-center">
+      <div className="navbar lg:flex justify-between items-center text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -46,35 +52,22 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 text-black shadow bg-base-100 rounded-box w-52"
             >
               {items}
             </ul>
           </div>
-         <div className="flex items-center">
+          <div className="flex items-center">
             <img src={logo} className="w-[70px] h-[70px]" alt="" />
-         <Link
-            to="/"
-            className="btn btn-ghost normal-case text-xl"
-          >
-            Academy Sports
-          </Link>
-         </div>
-        </div>
-      
-          <div className=" navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal font-semibold  px-1">
-              {items}
-            </ul>
-          </div>
-          <div className="">
-            <Link to="/login">
-              <button className="px-8 py-3 ml-8 bg-[#1e1e85] text-white rounded-md">
-                Login
-              </button>
+            <Link to="/" className="btn btn-ghost normal-case text-xl">
+              Academy Sports
             </Link>
           </div>
-        
+        </div>
+
+        <div className=" navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal font-semibold items-center  px-1">{items}</ul>
+        </div>
       </div>
     </>
   );
