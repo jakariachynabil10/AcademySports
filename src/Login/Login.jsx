@@ -1,11 +1,18 @@
-import React from "react";
-import { FaGoogle } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 const Login = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => {
-        console.log(data)
-    };
+  const { register, handleSubmit } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
@@ -25,7 +32,9 @@ const Login = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                  {...register("mail", { required: "Email Address is required" })}
+                    {...register("mail", {
+                      required: "Email Address is required",
+                    })}
                     type="email"
                     placeholder="email"
                     className="input input-bordered"
@@ -35,16 +44,33 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
-                  <input
-                  {...register("password", { required: true })}
-                    type="password"
+
+               
+                 <input
+                    {...register("password", { required: true })}
+                    type={showPassword ? "text" : "password"}
                     placeholder="password"
-                    className="input input-bordered"
+                    className="input input-bordered relative"
+                   
                   />
+                  <div  onClick={togglePasswordVisibility} className="absolute pb-5 top-1/2  right-14 transform -translate-y-1/2">
+                  {showPassword ? (
+                    <>
+                      <FaEyeSlash></FaEyeSlash>
+                    </>
+                  ) : (
+                    <>
+                      <FaEye></FaEye>
+                    </>
+                  )}
+                  </div>
+                 
+       
+
                   <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
+                    <Link to='/register' className="label-text-alt link link-hover">
+                     Create a Account
+                    </Link>
                   </label>
                 </div>
                 <div className="form-control mt-6">
