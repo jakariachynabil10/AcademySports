@@ -20,6 +20,7 @@ import Register from "./Register/Register.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import Dashboard from "./Dashboard/Dashboard.jsx";
 import AllUsers from "./AllUsers/AllUsers.jsx";
+import MyClassCart from "./MyClassCart/MyClassCart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         path: "allUsers",
         element: <AllUsers></AllUsers>,
       },
+      {
+        path : 'myClassCart',
+        element : <MyClassCart></MyClassCart>
+      }
     ],
   },
 ]);

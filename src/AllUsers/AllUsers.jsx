@@ -91,8 +91,8 @@ const AllUsers = () => {
   return (
     <>
       <h1 className="font-bold text-center text-5xl my-5">ALL USERS</h1>
-      <div className="overflow-x-auto">
-        <table className="table w-full table-lg">
+      <div className="overflow-x-auto  border p-10 w-full h-full rounded-xl shadow-xl">
+        <table className="table">
           {/* head */}
           <thead>
             <tr>
