@@ -17,7 +17,7 @@ const Banner = () => {
                 <div>
                     <h1 className='font-bold text-3xl text-white'>Welcome to The Best Academy Sports </h1>
                     <p className='font-medium text-lg text-gray-400 py-5'>We have the best course about sports . Your Kid will be learn many things about sports . If your kid want to be a professional sports athletics, you came to the right place . We will give our best to support your kid .  </p>
-                    <button className='px-8 py-3 me-5 my-3 bg-[#9195ba]  text-white rounded-md'>Buy Now</button>
+                    <button className='px-8 py-3 me-5 my-3  bg-[#9195ba]  text-white rounded-md'>Buy Now</button>
                     <button className='px-8 py-3  bg-[#0c0a10]  text-white rounded-md'>See More</button>
                 </div>
                 <div>

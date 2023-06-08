@@ -33,6 +33,8 @@ const SingleCls = ({ singleCls }) => {
         description,
         information,
         price,
+        availableSeats,
+        instructorName,
         email: user.email,
       };
       axiosSecure.post("/carts", cartItem).then((data) => {

@@ -21,6 +21,7 @@ import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import Dashboard from "./Dashboard/Dashboard.jsx";
 import AllUsers from "./AllUsers/AllUsers.jsx";
 import MyClassCart from "./MyClassCart/MyClassCart.jsx";
+import Payment from "./Payment/Payment.jsx";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path : 'myClassCart',
         element : <MyClassCart></MyClassCart>
+      },
+      {
+        path : 'payment',
+        element : <Payment></Payment>
       }
     ],
   },

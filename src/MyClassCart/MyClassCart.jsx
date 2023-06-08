@@ -2,6 +2,7 @@ import React from "react";
 import useCart from "../Hooks/useCart";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { FaCreditCard, FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const MyClassCart = () => {
   const [carts, refetch] = useCart();
@@ -10,7 +11,7 @@ const MyClassCart = () => {
   const [axiosSecure] = useAxiosSecure();
   return (
     <>
-      <div className="overflow-x-auto border p-10 w-full h-full rounded-xl shadow-xl">
+      <div className="overflow-x-auto border p-10 w-full rounded-xl shadow-xl">
         <h1 className="text-center font-bold text-5xl my-5">My Classes</h1>
         <table className="table">
           {/* head */}
@@ -45,9 +46,11 @@ const MyClassCart = () => {
                   </button>
                 </th>
                 <th>
-                  <button className="btn btn-ghost bg-green-500">
-                    <FaCreditCard></FaCreditCard>
-                  </button>
+                  <Link to="/dashboard/payment">
+                    <button className="btn btn-ghost bg-green-500 text-white">
+                      <FaCreditCard></FaCreditCard>
+                    </button>
+                  </Link>
                 </th>
               </tr>
             ))}

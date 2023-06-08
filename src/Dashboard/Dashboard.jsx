@@ -24,7 +24,7 @@ const Dashboard = () => {
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content">
           {/* Page content here */}
           <Outlet></Outlet>
           <label
@@ -40,11 +40,6 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             {isAdmin ? (
               <>
-                <li>
-                  <NavLink to="/dashboard/home">
-                    <FaHome></FaHome> Admin Home
-                  </NavLink>
-                </li>
                 <li>
                   <NavLink to="/dashboard/manageClasses">
                     <FaWallet></FaWallet> Manage Classes
@@ -63,11 +58,6 @@ const Dashboard = () => {
             {isInstructor ? (
               <>
                 <li>
-                  <NavLink to="/dashboard/home">
-                    <FaHome></FaHome> Instructor Home
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink to="/dashboard/addClass">
                     {" "}
                     <FaAddressBook></FaAddressBook> Add Class
@@ -84,11 +74,6 @@ const Dashboard = () => {
             )}
             {isStudents ? (
               <>
-                <li>
-                  <NavLink to="/dashboard/home">
-                    <FaHome></FaHome> User Home
-                  </NavLink>
-                </li>
                 <li>
                   <NavLink to="/dashboard/payment">
                     <FaCalendarAlt></FaCalendarAlt> Payment
