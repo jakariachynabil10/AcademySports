@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import usePopularSection from '../Hooks/usePopularSection';
 import ClassesSection from '../PopularSection/ClassesSection';
+import InstructorSection from '../PopularSection/InstructorSection';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
            <Banner></Banner>
            </div>
            <ClassesSection></ClassesSection>
+           <InstructorSection></InstructorSection>
         </div>
     );
 };
