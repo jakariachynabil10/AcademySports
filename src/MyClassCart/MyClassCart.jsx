@@ -3,12 +3,40 @@ import useCart from "../Hooks/useCart";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { FaCreditCard, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyClassCart = () => {
   const [carts, refetch] = useCart();
   console.log(carts);
-  const total = carts.reduce((sum, ItemPrice) => ItemPrice.price + sum, 0);
   const [axiosSecure] = useAxiosSecure();
+
+
+  const handleDelete = cart => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axiosSecure.delete(`/carts/${cart._id}`)
+                .then(data => {
+                  console.log(data)
+                    if (data.data.deletedCount > 0) {
+                        refetch();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+        }
+    })
+}
   return (
     <>
       <div className="overflow-x-auto border p-10 w-full rounded-xl shadow-xl">
@@ -41,7 +69,7 @@ const MyClassCart = () => {
                 <td>${cart.price}</td>
                 <td>{cart.description}</td>
                 <th>
-                  <button className="btn btn-ghost bg-red-600  text-white">
+                  <button onClick={()=> handleDelete(cart)} className="btn btn-ghost bg-red-600  text-white">
                     <FaTrashAlt></FaTrashAlt>
                   </button>
                 </th>

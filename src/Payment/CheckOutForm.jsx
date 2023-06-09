@@ -2,12 +2,15 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import "./CheckOutForm.css"
 
 import Swal from "sweetalert2";
+import useCart from "../Hooks/useCart";
 
 const CheckOutForm = ({carts, price}) => {
   const stripe = useStripe();
   const elements = useElements();
+  const [,refetch] = useCart()
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
@@ -74,8 +77,8 @@ const CheckOutForm = ({carts, price}) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        availableSeats : carts.availableSeats - 1,
         status : 'pending',
+        cartItems : carts.map(item => item._id),
         classItems : carts.map(item => item.classItemId),
         classNames : carts.map(name => name.className)
        
@@ -84,6 +87,7 @@ const CheckOutForm = ({carts, price}) => {
       .then(res=>{
         console.log(res.data)
         if (res.data.insertResult.insertedId) {
+          refetch()
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -116,9 +120,11 @@ const CheckOutForm = ({carts, price}) => {
             },
           }}
         />
-        <button type="submit" disabled={!stripe}>
-          Pay
+       <div className="lg:ml-36  mt-5">
+       <button type="submit" className="border px-7 py-3 rounded-xl bg-green-500 text-white hover:bg-[#485270] "  disabled={!stripe || !clientSecret}>
+       Proceed to Payment
         </button>
+       </div>
       </form>
     </div>
   );
