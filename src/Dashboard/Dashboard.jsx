@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const [isStudents] = useStudents();
-  console.log(isAdmin, isInstructor, isStudents);
+  // console.log(isAdmin, isInstructor, isStudents);
 
   return (
     <>

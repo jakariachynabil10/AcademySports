@@ -71,6 +71,7 @@ const CheckOutForm = ({carts, price}) => {
     setProcessing(false);
 
     if (paymentIntent.status === "succeeded") {
+    
       setTransactionId(paymentIntent.id);
       const payment = {
         email: user?.email,
@@ -78,6 +79,7 @@ const CheckOutForm = ({carts, price}) => {
         price,
         date: new Date(),
         status : 'pending',
+        availableSeats : carts.map(seat => seat.availableSeats - 1),
         cartItems : carts.map(item => item._id),
         classItems : carts.map(item => item.classItemId),
         classNames : carts.map(name => name.className)
@@ -97,6 +99,9 @@ const CheckOutForm = ({carts, price}) => {
           })
         }
       })
+      console.log(`/enrolledCls?id=${payment.classItems}`)
+      // axiosSecure(`/enrolledCls?id=${payment.classItems}`)
+      // .then(data => console.log(data))
     }
 
 
