@@ -99,9 +99,7 @@ const CheckOutForm = ({carts, price}) => {
           })
         }
       })
-      console.log(`/enrolledCls?id=${payment.classItems}`)
-      // axiosSecure(`/enrolledCls?id=${payment.classItems}`)
-      // .then(data => console.log(data))
+    
     }
 
 

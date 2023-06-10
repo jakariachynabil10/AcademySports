@@ -41,8 +41,11 @@ const AddToys = () => {
             instructorEmail,
             classImg: imgURL,
             price: parseFloat(price),
-            availableSeat: parseFloat(availableSeat),
-            details,
+            availableSeats: parseFloat(availableSeat),
+            description : details,
+            information : details,
+            studentsEnrolled : 0,
+            status : 'pending'
           };
           console.log(newItem);
           axiosSecure.post("/addClass", newItem).then((data) => {
