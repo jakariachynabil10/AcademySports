@@ -25,6 +25,7 @@ import Payment from "./Payment/Payment.jsx";
 import AddClass from "./AddClass/AddClass.jsx";
 import MyClass from "./InstructorCls/MyClass.jsx";
 import PrivetRoute from "./PrivetRoute/PrivetRoute.jsx";
+import ManageClasses from "./ManageClasses/ManageClasses.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,15 +60,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+        element: <PrivetRoute><AllUsers></AllUsers>,</PrivetRoute>
       },
       {
         path : 'myClassCart',
-        element : <MyClassCart></MyClassCart>
+        element : <PrivetRoute><MyClassCart></MyClassCart></PrivetRoute>
       },
       {
         path : 'payment',
-        element : <Payment></Payment>
+        element : <PrivetRoute><Payment></Payment></PrivetRoute>
       },
       {
         path : 'addClass',
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path : 'myClasses',
         element : <PrivetRoute><MyClass></MyClass></PrivetRoute>
+      },
+      {
+        path : 'manageClasses',
+        element : <PrivetRoute><ManageClasses></ManageClasses></PrivetRoute>
       }
     ],
   },

@@ -21,6 +21,7 @@ const SingleCls = ({ singleCls }) => {
     information,
     instructorName,
     availableSeats,
+    studentsEnrolled
   } = singleCls;
 
   const handleToCart = (item) => {
@@ -79,6 +80,7 @@ const SingleCls = ({ singleCls }) => {
         <p>Price : ${price}</p>
         <p>Instructor Name : {instructorName}</p>
         <p>Available Seats : {availableSeats}</p>
+        <p>Students Enrolled : {studentsEnrolled || 0}</p>
         <div className="card-actions justify-end">
           <button
             onClick={() => handleToCart(singleCls)}
