@@ -85,6 +85,7 @@ const Register = () => {
                 type="text"
                 placeholder="Your Name"
                 className="input input-bordered"
+                required
               />
               {errors.name && (
                 <span className="text-red-500">{errors.name}</span>
@@ -101,6 +102,7 @@ const Register = () => {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
               {errors.email && (
                 <span className="text-red-500">{errors.email.message}</span>
@@ -112,16 +114,21 @@ const Register = () => {
               </label>
 
               <input
-                {...register("password", {
-                  required: true,
+                 {...register("password", {
+                  required: "Password is required",
                   minLength: {
                     value: 6,
                     message: "Password must be at least 6 characters",
+                  },
+                  pattern: {
+                    value: /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/,
+                    message: "Password must contain at least one uppercase letter, one number, and one special character",
                   },
                 })}
                 type="password"
                 placeholder="password"
                 className="input input-bordered relative"
+                required
               />
               {errors.password && (
                 <span className="text-red-500">{errors.password.message}</span>
@@ -141,6 +148,7 @@ const Register = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered relative"
+                required
               />
 
               {errors.confirmPassword && (
@@ -161,6 +169,7 @@ const Register = () => {
                 type="url"
                 placeholder="Photo URL"
                 className="input input-bordered relative"
+                required
               />
             </div>
             <label className="label">
