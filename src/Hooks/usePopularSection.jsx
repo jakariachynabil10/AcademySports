@@ -5,7 +5,7 @@ const usePopularSection = () => {
    const {data : popularClasses = [], isLoading : loading} = useQuery({
     queryKey : ['popularClasses'],
     queryFn : async () =>{
-        const res = await fetch('http://localhost:9000/popularClasses')
+        const res = await fetch('https://assigment12-server.vercel.app/popularClasses')
         return res.json()
     }
    })
