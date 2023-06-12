@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import SingleCard from "./SingleCard";
 
+
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
+ 
   const [datas, setDatas] = useState([]);
   useEffect(() => {
     axiosSecure("/manageClasses").then((data) => {

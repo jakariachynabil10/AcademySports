@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
+
 const SingleCard = ({ data }) => {
     const [axiosSecure] = useAxiosSecure()
+  
     // const [status, setStatus] = useState('')
   const {
     _id,
@@ -22,6 +24,7 @@ const SingleCard = ({ data }) => {
     .then(data => {
         console.log(data)
         if (data.data.modifiedCount) {
+       
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
