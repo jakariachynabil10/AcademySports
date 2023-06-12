@@ -12,6 +12,10 @@ Payment Integration: Students can securely make payments for their booked classe
 
 3.Payment History: After completing a payment, students can view their payment history, providing them with a record of their financial transactions within the platform.
 
+4.Instructor Management: Admin users have the ability to designate instructors, manage their information, and assign them to specific classes.
+
+5.Payment Integration: Students can securely make payments for their booked classes using Stripe JS, ensuring a smooth and convenient transaction process.
+
 ## Used Packages/Technology
 * React JS
 * Node JS
