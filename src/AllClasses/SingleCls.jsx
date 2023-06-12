@@ -4,6 +4,8 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useinstructor";
 
 const SingleCls = ({ singleCls }) => {
   const { user } = useContext(AuthContext);
@@ -11,6 +13,8 @@ const SingleCls = ({ singleCls }) => {
   const [,refetch] = useCart()
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
 
   const {
     _id,
@@ -73,7 +77,7 @@ const SingleCls = ({ singleCls }) => {
       <figure>
         <img src={classImg} className="h-[300px]" alt={className} />
       </figure>
-      <div className="card-body">
+      <div className={availableSeats === 0 ? "bg-red-500 card-body" : 'card-body'}>
         <h2 className="card-title">{className}</h2>
         <p>Description : {description}</p>
         <p>Information : {information}</p>
@@ -83,8 +87,9 @@ const SingleCls = ({ singleCls }) => {
         <p>Students Enrolled : {studentsEnrolled || 0}</p>
         <div className="card-actions justify-end">
           <button
+          disabled ={ isAdmin || isInstructor || availableSeats === 0}
             onClick={() => handleToCart(singleCls)}
-            className="px-8 py-3  bg-[#0c0769] text-white rounded-md"
+            className={availableSeats === 0 || isAdmin || isInstructor ? "bg-gray-500 bg-opacity-25 px-8 py-3  bg-[#0c0769] text-white rounded-md" : "px-8 py-3  bg-[#0c0769] text-white rounded-md"}
           >
             Add to Class Cart
           </button>
