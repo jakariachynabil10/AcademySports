@@ -99,7 +99,6 @@ const AddToys = () => {
                 <label className="input-group">
                   <input
                     type="text"
-                    name="instructorName"
                     {...register("instructorName", { required: true })}
                     placeholder="Instructor Name"
                     defaultValue={user?.displayName}

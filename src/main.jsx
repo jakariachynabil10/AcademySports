@@ -26,6 +26,9 @@ import AddClass from "./AddClass/AddClass.jsx";
 import MyClass from "./InstructorCls/MyClass.jsx";
 import PrivetRoute from "./PrivetRoute/PrivetRoute.jsx";
 import ManageClasses from "./ManageClasses/ManageClasses.jsx";
+import AdminRoute from "./AdminRoute/AdminRoute.jsx";
+import InstructorRoute from "./InstructorRoute/InstructorRoute.jsx";
+import StudentRoute from "./StudentRoute/StudentRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,31 +59,31 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
     children: [
       {
         path: "allUsers",
-        element: <PrivetRoute><AllUsers></AllUsers>,</PrivetRoute>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
       },
       {
         path : 'myClassCart',
-        element : <PrivetRoute><MyClassCart></MyClassCart></PrivetRoute>
+        element :<StudentRoute><MyClassCart></MyClassCart></StudentRoute>
       },
       {
         path : 'payment',
-        element : <PrivetRoute><Payment></Payment></PrivetRoute>
+        element :<StudentRoute><Payment></Payment></StudentRoute>
       },
       {
         path : 'addClass',
-        element : <PrivetRoute><AddClass></AddClass></PrivetRoute>
+        element :<InstructorRoute><AddClass></AddClass></InstructorRoute>
       },
       {
         path : 'myClasses',
-        element : <PrivetRoute><MyClass></MyClass></PrivetRoute>
+        element : <InstructorRoute><MyClass></MyClass></InstructorRoute>
       },
       {
         path : 'manageClasses',
-        element : <PrivetRoute><ManageClasses></ManageClasses></PrivetRoute>
+        element : <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
       }
     ],
   },

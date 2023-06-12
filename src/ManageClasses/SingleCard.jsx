@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const SingleCard = ({ data }) => {
     const [axiosSecure] = useAxiosSecure()
-    const [status, setStatus] = useState('')
+    // const [status, setStatus] = useState('')
   const {
     _id,
     classImg,
@@ -17,15 +17,15 @@ const SingleCard = ({ data }) => {
   } = data;
 
   const handleBtn = (item) =>{
-    setStatus(item)
-    axiosSecure.patch(`/updateStatus?status=${status}&id=${_id}`)
+    // setStatus(item)
+    axiosSecure.patch(`/updateStatus?status=${item}&id=${_id}`)
     .then(data => {
         console.log(data)
         if (data.data.modifiedCount) {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: `${status}`,
+                title: `${item}`,
                 showConfirmButton: false,
                 timer: 1500
               })
