@@ -30,11 +30,13 @@ import AdminRoute from "./AdminRoute/AdminRoute.jsx";
 import InstructorRoute from "./InstructorRoute/InstructorRoute.jsx";
 import StudentRoute from "./StudentRoute/StudentRoute.jsx";
 import PaymentHistory from "./PaymentHistory/PaymentHistory.jsx";
+import Error from "./Error/Error.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement : <Error></Error>,
     children: [
       {
         path: "/",
@@ -61,6 +63,7 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
+    errorElement : <Error></Error>,
     children: [
       {
         path: "allUsers",
