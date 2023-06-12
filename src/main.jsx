@@ -29,6 +29,7 @@ import ManageClasses from "./ManageClasses/ManageClasses.jsx";
 import AdminRoute from "./AdminRoute/AdminRoute.jsx";
 import InstructorRoute from "./InstructorRoute/InstructorRoute.jsx";
 import StudentRoute from "./StudentRoute/StudentRoute.jsx";
+import PaymentHistory from "./PaymentHistory/PaymentHistory.jsx";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path : 'payment',
         element :<StudentRoute><Payment></Payment></StudentRoute>
+      },
+      {
+        path : 'history',
+        element : <PaymentHistory></PaymentHistory>
       },
       {
         path : 'addClass',
