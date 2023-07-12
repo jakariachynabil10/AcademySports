@@ -5,6 +5,7 @@ import ClassesSection from '../PopularSection/ClassesSection';
 import InstructorSection from '../PopularSection/InstructorSection';
 import WhatDose from '../WhatDose/WhatDose';
 import AcademyProgram from '../AcademyProgram/AcademyProgram';
+import Messege from '../Messege/Messege';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
            <InstructorSection></InstructorSection>
            <WhatDose></WhatDose>
            <AcademyProgram></AcademyProgram>
+           <Messege></Messege>
         </div>
     );
 };
