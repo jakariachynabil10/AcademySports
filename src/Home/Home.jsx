@@ -4,6 +4,7 @@ import usePopularSection from '../Hooks/usePopularSection';
 import ClassesSection from '../PopularSection/ClassesSection';
 import InstructorSection from '../PopularSection/InstructorSection';
 import WhatDose from '../WhatDose/WhatDose';
+import AcademyProgram from '../AcademyProgram/AcademyProgram';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
            <ClassesSection></ClassesSection>
            <InstructorSection></InstructorSection>
            <WhatDose></WhatDose>
+           <AcademyProgram></AcademyProgram>
         </div>
     );
 };

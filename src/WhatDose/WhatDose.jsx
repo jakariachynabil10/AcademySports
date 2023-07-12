@@ -10,7 +10,7 @@ const WhatDose = () => {
       <h1 className="text-2xl text-center font-bold mt-10">
         Improve the Game by Focusing on <br /> Key Elements
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-4 ml-24  mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-4 lg:ml-24 lg:mx-0 mx-16 mt-10">
         <div className="card card-compact w-[250px] my-5 lg:my-0  bg-base-100 shadow-xl">
           <figure>
             <img src={coach} className="w-[80px]" alt="Shoes" />
