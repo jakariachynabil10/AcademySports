@@ -6,6 +6,7 @@ import InstructorSection from '../PopularSection/InstructorSection';
 import WhatDose from '../WhatDose/WhatDose';
 import AcademyProgram from '../AcademyProgram/AcademyProgram';
 import Messege from '../Messege/Messege';
+import Blog from '../Blog/Blog';
 
 const Home = () => {
     return (
@@ -18,6 +19,7 @@ const Home = () => {
            <WhatDose></WhatDose>
            <AcademyProgram></AcademyProgram>
            <Messege></Messege>
+           <Blog></Blog>
         </div>
     );
 };
